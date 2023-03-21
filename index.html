@@ -27,14 +27,26 @@
         <p>
           Ever been in a room and felt like something was missing? Perhaps it felt slightly bare and uninviting. I’ve got some simple tips to help you make any room feel complete.
         </p>
-        <div>
-          <span>
-            Michelle Appleton
-            28 Jun 2020
-          </span>
-          <span>
-            Share
-          </span>
+        <div class="author">
+          <div class="avatar">
+            <img src="images/avatar-michelle.jpg" alt="Avatar">
+            <p>
+              <span>Michelle Appleton</span><br>
+              28 Jun 2020
+            </p>
+          </div>
+          <div class="share" onclick="showPanel(this)" onmouseover="changeIcon('over')" onmouseout="changeIcon('out')" id="buttonShare">
+            <img id="shareicon" src="images/icon-share.svg" alt="share">
+          </div>
+        </div>
+        <div class="message" id="message">
+          <div class="message_up" id="message_up">
+            <span>Share</span>
+            <img src="images/icon-facebook.svg" alt="facebook">
+            <img src="images/icon-twitter.svg" alt="facebook">
+            <img src="images/icon-pinterest.svg" alt="facebook">
+          </div>
+          <div class="message_down">&nbsp;</div>
         </div>
       </div>
     </div>
@@ -45,6 +57,40 @@
       Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
       Coded by <a href="https://www.frontendmentor.io/profile/zepolrepus">zepolrepus</a>.
     </div>
+    <script>
+      const imagen = document.getElementById('shareicon');
+      const panel = document.getElementById('message');
+      const panel_up = document.getElementById('message_up');
+
+      function changeIcon(state){
+
+        if (state == 'over'){
+          imagen.src = 'images/icon-share2.svg';
+        }
+        if (state == 'out'){
+          imagen.src = 'images/icon-share.svg';
+        }
+      }
+
+      function showPanel(element){
+        const clone = element.cloneNode(true);
+  
+        var x = window.matchMedia("(max-width: 450px)")
+        
+        if (panel.style.visibility == "" || panel.style.visibility == "hidden"){
+          panel.style.visibility = 'visible';
+          if (x.matches){
+            panel_up.appendChild(clone);
+          }
+        } else {
+          panel.style.visibility = 'hidden';
+          if (x.matches){
+            panel_up.removeChild(panel_up.lastChild);
+          }
+        }
+        
+      }
+    </script>
   </footer>
 </body>
 </html>
